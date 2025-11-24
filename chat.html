@@ -413,6 +413,20 @@
 
   <!-- Your backend/LLM logic will live here -->
   <script src="/chatbot.js"></script>
+  <script>
+    // Fallback: ensure window.chatbotSend exists even if chatbot.js fails to load
+    if (typeof window.chatbotSend !== "function") {
+      window.chatbotSend = async function (message, history = [], sessionId = "") {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, history, sessionId })
+        });
+        const data = await response.json();
+        return data.reply;
+      };
+    }
+  </script>
 
   <script>
     (function () {
