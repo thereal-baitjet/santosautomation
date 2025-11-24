@@ -5,15 +5,15 @@
     { "src": "server.js", "use": "@vercel/node" },
     { "src": "chat.html", "use": "@vercel/static" },
     { "src": "index.html", "use": "@vercel/static" },
-    { "src": "chatbot.js", "use": "@vercel/static" }
+    { "src": "chatbot.js", "use": "@vercel/static" },
+    { "src": "public/**/*", "use": "@vercel/static" }
   ],
   "routes": [
+    { "handle": "filesystem" },
     { "src": "/api/chat", "dest": "/api/chat.js" },
     { "src": "/chatbot.js", "dest": "/chatbot.js" },
     { "src": "/chat", "dest": "/chat.html" },
     { "src": "/chat.html", "dest": "/chat.html" },
-    { "src": "/AI_Audit_Checklist_SantosAutomation\\.pdf", "dest": "/AI_Audit_Checklist_SantosAutomation.pdf" },
-    { "src": "/(.*\\.pdf)", "dest": "/$1" },
     { "src": "/", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
