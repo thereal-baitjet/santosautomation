@@ -8,6 +8,15 @@
     { "src": "chatbot.js", "use": "@vercel/static" },
     { "src": "public/**/*", "use": "@vercel/static" }
   ],
+  "headers": [
+    {
+      "source": "/AI_Audit_Checklist_SantosAutomation.pdf",
+      "headers": [
+        { "key": "Content-Disposition", "value": "attachment; filename=\"AI_Audit_Checklist_SantosAutomation.pdf\"" },
+        { "key": "Content-Type", "value": "application/pdf" }
+      ]
+    }
+  ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/api/chat", "dest": "/api/chat.js" },
