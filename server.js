@@ -129,5 +129,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// Vercel/Serverless export (do not call listen in a serverless environment)
+// Export the app and a handler for serverless runtimes
 export default app;
+export const handler = (req, res) => app(req, res);
