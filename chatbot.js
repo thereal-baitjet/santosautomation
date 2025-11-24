@@ -1,5 +1,12 @@
+function getBaseUrl() {
+  if (typeof window === "undefined") return "";
+  if (window.location.protocol === "file:") return "http://localhost:3000";
+  return "";
+}
+
 window.chatbotSend = async function (message, history = [], sessionId = "") {
-  const response = await fetch("/api/chat", {
+  const base = getBaseUrl();
+  const response = await fetch(`${base}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, history, sessionId })
