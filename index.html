@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mr. J. C. Santos – AI & Full-Stack Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="AI-powered full-stack studio: landing pages, automations, APIs, and micro-SaaS builds to help your business make more money."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #030014;
+      --bg-alt: #05081c;
+      --accent: #8b5cf6;
+      --accent-2: #22d3ee;
+      --accent-3: #f97316;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1e1b4b 0%, #020617 45%, #020617 100%);
+      color: var(--text);
+      scroll-behavior: smooth;
+      overflow-x: hidden; /* kill horizontal overflow everywhere */
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1100px; /* slightly narrower = safer on laptops */
+      margin: 0 auto;
+      padding: 22px 16px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Decorative blobs / orbs (artistic background) */
+    .blob {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.5;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 0;
+      animation: float 18s ease-in-out infinite alternate;
+    }
+
+    .blob-1 {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, #4c1d95 0%, #0f172a 62%);
+      top: -80px;
+      left: -40px;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #22d3ee 0%, #0f172a 60%);
+      top: 45%;
+      right: -40px; /* closer so it doesn't affect layout */
+      animation-delay: 3s;
+    }
+
+    .blob-3 {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, #f97316 0%, #0f172a 70%);
+      bottom: -80px;
+      left: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(18px, -24px, 0) scale(1.05); }
+      100% { transform: translate3d(-10px, 16px, 0) scale(1.01); }
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 8px 0 14px;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 4, 18, 0.9),
+        rgba(3, 4, 18, 0.7),
+        transparent
+      );
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      background: conic-gradient(from 210deg, #8b5cf6, #ec4899, #22d3ee, #f97316, #8b5cf6);
+      padding: 2px;
+      position: relative;
+      overflow: hidden;
+      animation: spin-slow 18s linear infinite;
+    }
+
+    .logo-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: radial-gradient(circle at 20% 0, #020617 0, #020617 55%, #0b1120 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-text-main {
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @keyframes spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #22d3ee, #8b5cf6);
+      color: #f9fafb;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: 0 6px 18px rgba(8, 47, 73, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-nav span {
+      font-size: 14px;
+    }
+
+    .btn-nav:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(30, 64, 175, 0.8);
+    }
+
+    .btn-ghost {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover {
+      color: #f8fafc;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn-callback {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(139, 92, 246, 0.16));
+      color: #f8fafc;
+      font-weight: 600;
+      transition: transform 0.12s ease, border-color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-callback:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .btn-callback .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 28px;
+      padding: 24px 0 38px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.4vw, 40px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(130deg, #e5e7eb, #a855f7, #22c55e, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .pill-animated {
+      border-color: rgba(59, 130, 246, 0.7);
+      background: linear-gradient(
+        120deg,
+        rgba(79, 70, 229, 0.25),
+        rgba(22, 163, 74, 0.1),
+        rgba(8, 47, 73, 0.6)
+      );
+      box-shadow: 0 8px 24px rgba(30, 64, 175, 0.7);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    @keyframes pulse {
+      0%   { transform: translateY(0) scale(1); opacity: 1; }
+      50%  { transform: translateY(-1px) scale(1.03); opacity: 0.93; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: radial-gradient(circle at 10% 0, #22d3ee, #8b5cf6);
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+    }
+
+    .btn-ghost {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover {
+      border-color: #8b5cf6;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 999px;
+      background: #4b5563;
+    }
+
+    /* Hero visual (Studio view) */
+    .hero-visual {
+      position: relative;
+      padding: 12px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, #020617 0, #020617 60%, #020617 100%);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      overflow: hidden;
+      box-shadow:
+        0 0 40px rgba(56, 189, 248, 0.3),
+        0 0 80px rgba(129, 140, 248, 0.4);
+      animation: fade-in-up 0.7s ease-out;
+      width: 100%;
+      max-width: 480px;
+      margin-left: auto;
+    }
+
+    @keyframes fade-in-up {
+      0% { transform: translateY(12px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero-visual-inner {
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      background: radial-gradient(circle at 10% 0, rgba(79, 70, 229, 0.35), rgba(3, 7, 18, 0.98));
+      position: relative;
+    }
+
+    .hero-visual-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(10, 10, 23, 0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #e5e7eb;
+    }
+
+    .hero-visual-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .hero-visual-sub {
+      font-size: 11px;
+      color: #cbd5f5;
+      margin-bottom: 12px;
+    }
+
+    /* In god mode, keep this stack vertical always: safer + clean */
+    .hero-visual-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .hero-visual-preview {
+      border-radius: 14px;
+      padding: 10px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98)),
+        radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.25), transparent 55%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual-mock {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      height: 160px;
+      background:
+        linear-gradient(135deg, #020617 0, #020617 30%, #111827 100%),
+        url("https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800")
+          center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-visual-mock::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(15, 23, 42, 0.94),
+        rgba(15, 23, 42, 0.65),
+        transparent
+      );
+      z-index: 1;
+    }
+
+    .hero-visual-overlay-text {
+      position: absolute;
+      inset: 14px 14px auto 14px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .hero-visual-overlay-title {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .hero-visual-overlay-sub {
+      font-size: 10px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .hero-visual-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 9.5px;
+    }
+
+    .hero-visual-chip {
+      border-radius: 999px;
+      padding: 3px 7px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-visual-spark {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.9), transparent 70%);
+      opacity: 0.7;
+      filter: blur(4px);
+      animation: spark-pulse 3.2s ease-in-out infinite;
+    }
+
+    @keyframes spark-pulse {
+      0%   { transform: scale(1); opacity: 0.5; }
+      50%  { transform: scale(1.1); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    .hero-visual-metrics {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 10px;
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 11px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-label {
+      color: #cbd5f5;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metric-bar {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .metric-bar-fill {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #8b5cf6);
+      animation: bar-fill 4s linear infinite;
+      transform-origin: left;
+    }
+
+    .metric-value {
+      font-weight: 500;
+      font-size: 11px;
+      color: #a5b4fc;
+      white-space: nowrap;
+    }
+
+    @keyframes bar-fill {
+      0%   { transform: scaleX(0.2); }
+      30%  { transform: scaleX(0.7); }
+      60%  { transform: scaleX(0.9); }
+      100% { transform: scaleX(0.8); }
+    }
+
+    /* Sections */
+    section {
+      padding: 26px 0 6px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.14), rgba(15, 23, 42, 0.95));
+      padding: 12px 13px 10px;
+      font-size: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.23), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
+      border-color: rgba(129, 140, 248, 0.8);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .card-chip {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 3px 7px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .card-body {
+      font-size: 11.5px;
+      color: #e5e7eb;
+      margin-bottom: 6px;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 11px;
+      color: #9ca3af;
+      display: grid;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .card-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: #6b7280;
+    }
+
+    .card-footer {
+      font-size: 10.8px;
+      color: #a5b4fc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 11.5px;
+    }
+
+    .step {
+      border-radius: 14px;
+      border: 1px dashed rgba(75, 85, 99, 0.8);
+      padding: 9px;
+      background: rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 100% 0, rgba(248, 250, 252, 0.08), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .step:hover::before {
+      opacity: 1;
+    }
+
+    .step-number {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .step-title {
+      font-weight: 500;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .step-text {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* Pricing strip */
+    .pricing-strip {
+      margin-top: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: linear-gradient(
+        120deg,
+        rgba(15, 23, 42, 0.96),
+        rgba(30, 64, 175, 0.85),
+        rgba(8, 47, 73, 0.9)
+      );
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .pricing-strip-main {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .pricing-strip-note {
+      font-size: 11.5px;
+      color: #e5e7eb;
+      max-width: 360px;
+    }
+
+    /* .clout promo section */
+    .clout-section {
+      padding: 28px 0 10px;
+    }
+
+    .clout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .clout-card-main {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.2), rgba(15, 23, 42, 0.96));
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+    }
+
+    .clout-card-main h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .clout-card-main p {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .clout-tagline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #cbd5f5;
+      margin-bottom: 4px;
+    }
+
+    .clout-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+
+    .clout-pill {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .clout-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .clout-list {
+      list-style: none;
+      font-size: 11.5px;
+      color: #d1d5db;
+      display: grid;
+      gap: 5px;
+      margin: 8px 0 10px;
+    }
+
+    .clout-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: #93c5fd;
+    }
+
+    .clout-note {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .clout-note strong {
+      color: #e5e7eb;
+    }
+
+    .clout-card-side {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 100% 0, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.98));
+      padding: 14px 14px 12px;
+      font-size: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .clout-side-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #cbd5f5;
+    }
+
+    .clout-domain-big {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .clout-domain-big span {
+      background: linear-gradient(135deg, #22d3ee, #8b5cf6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .clout-side-stat {
+      font-size: 11.5px;
+      color: #e5e7eb;
+    }
+
+    .clout-side-stat small {
+      display: block;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .clout-side-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #cbd5f5;
+    }
+
+    .clout-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .clout-link:hover {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 18px rgba(129, 140, 248, 0.7);
+      transform: translateY(-1px);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.22), rgba(15, 23, 42, 0.96));
+      padding: 16px 16px 14px;
+      font-size: 13px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.25), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .contact-card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .contact-card p {
+      font-size: 11.5px;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    form {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: 11px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      padding: 9px 10px;
+      font-size: 12px;
+      outline: none;
+      transition: all 0.15s ease-out;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.8);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-side {
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .contact-side strong {
+      color: #e5e7eb;
+    }
+
+    .contact-example {
+      font-size: 11px;
+      color: #e5e7eb;
+      border-left: 2px solid rgba(148, 163, 184, 0.7);
+      padding-left: 8px;
+      font-style: italic;
+    }
+
+    .danger-text {
+      color: #f97373;
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer a {
+      color: #9ca3af;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* Responsive tweaks */
+
+    /* Laptops / mid-width: keep hero sane and centered */
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        margin: 18px auto 0;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .pricing-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .clout-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        display: none;
+      }
+
+      .page {
+        padding-inline: 14px;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        margin-top: 12px;
+        max-width: 100%;
+      }
+
+      .hero-visual-mock {
+        height: 130px;
+      }
+
+      .hero-visual-title {
+        font-size: 12px;
+      }
+
+      .hero-visual-sub {
+        font-size: 10px;
+      }
+
+      .hero-visual-overlay-title {
+        font-size: 11px;
+      }
+
+      .hero-visual-overlay-sub {
+        font-size: 9px;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+  <!-- Artistic background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="page">
+    <!-- Header -->
+    <header>
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-avatar">
+            <div class="logo-avatar-inner">JS</div>
+          </div>
+          <div>
+            <div class="logo-text-main">Mr. J. C. Santos</div>
+            <div class="logo-text-sub">AI-powered full-stack studio</div>
+          </div>
+        </div>
+
+        <nav>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#clout">.clout Domains</a>
+          <a href="#contact" class="btn-nav"><span>●</span>Contact</a>
+          <a href="chat.html" class="btn-ghost">Open Studio Assistant</a>
+          <a class="btn-callback" href="tel:+12014505416">
+            <span class="dot"></span>
+            Text for a callback · 201-450-5416
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Build, automate, ship</div>
+          <h1 class="hero-title">
+            I turn ideas into <span>working products, AI agents, and automations</span>.
+          </h1>
+          <p class="hero-subtitle">
+            Need a landing page, a micro-SaaS, or an AI chatbot wired into your stack? I’ll design, build, and ship it—so you
+            can focus on customers and revenue.
+          </p>
+
+          <div class="hero-badges">
+            <div class="pill pill-animated">
+              <span class="pill-dot"></span>
+              Launch-ready in days, not months
+            </div>
+            <div class="pill">
+              ⚡ Landing pages · APIs · Bots · Automations
+            </div>
+            <div class="pill">
+              🎨 Custom-designed, not generic templates
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">
+              Tell me what you want to build →
+            </a>
+            <a href="#services" class="btn-ghost">
+              Explore services
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span>💻 Web apps · Micro-SaaS · AI assistants</span>
+            <span class="hero-meta-dot"></span>
+            <span>🤝 Perfect for solo founders & small teams</span>
+          </div>
+        </div>
+
+        <!-- Artistic hero visual -->
+        <aside class="hero-visual">
+          <div class="hero-visual-inner">
+            <div class="hero-visual-tag">Studio view</div>
+            <div class="hero-visual-title">Your idea, rendered in code.</div>
+            <div class="hero-visual-sub">
+              A modern stack, motion, and automation tuned to your business instead of a generic template.
+            </div>
+
+            <div class="hero-visual-grid">
+              <div class="hero-visual-preview">
+                <div class="hero-visual-mock">
+                  <div class="hero-visual-overlay-text">
+                    <div>
+                      <div class="hero-visual-overlay-title">
+                        Studio dashboard – <strong>live</strong>
+                      </div>
+                      <div class="hero-visual-overlay-sub">
+                        High-converting hero, clear offer, and a CTA wired to your stack.
+                      </div>
+                    </div>
+                    <div class="hero-visual-chip-row">
+                      <div class="hero-visual-chip">💳 Stripe connected</div>
+                      <div class="hero-visual-chip">📨 Auto follow-ups</div>
+                      <div class="hero-visual-chip">🤖 AI lead-qual bot</div>
+                    </div>
+                  </div>
+                  <div class="hero-visual-spark"></div>
+                </div>
+              </div>
+
+              <div class="hero-visual-metrics">
+                <div class="metric-row">
+                  <div class="metric-label">
+                    <span>🧲 Landing pages</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-bar-fill" style="animation-delay: 0s;"></div>
+                  </div>
+                  <div class="metric-value">+34% sign-ups</div>
+                </div>
+                <div class="metric-row">
+                  <div class="metric-label">
+                    <span>🤖 Automations</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-bar-fill" style="animation-delay: 0.6s;"></div>
+                  </div>
+                  <div class="metric-value">10+ hrs/week saved</div>
+                </div>
+                <div class="metric-row">
+                  <div class="metric-label">
+                    <span>💬 AI chatbots</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-bar-fill" style="animation-delay: 1.2s;"></div>
+                  </div>
+                  <div class="metric-value">24/7 replies</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Services</div>
+            <h2 class="section-title">What we can build together</h2>
+          </div>
+          <p class="section-subtitle">
+            From “I have an idea” to “people are paying for this.” Pick a lane, or mix a few together in one project.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Landing pages -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Conversion-first landing pages</h3>
+              <span class="card-chip">from $350</span>
+            </div>
+            <p class="card-body">
+              Custom, animated pages that make your offer unmistakably clear and guide visitors toward one action.
+            </p>
+            <ul class="card-list">
+              <li>Modern, responsive design (desktop + mobile)</li>
+              <li>Hook, benefits, social proof, clear CTA</li>
+              <li>Connected to forms, email, and analytics</li>
+            </ul>
+            <div class="card-footer">
+              <span>Great for launches & validation.</span>
+              <span>Timeline: ~3–5 days</span>
+            </div>
+          </article>
+
+          <!-- Bug fixes -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Bug fixes & technical cleanup</h3>
+              <span class="card-chip">from $80</span>
+            </div>
+            <p class="card-body">
+              Get unstuck. I’ll fix UI glitches, errors, and weird behavior so you can move forward again.
+            </p>
+            <ul class="card-list">
+              <li>Front-end and back-end issues</li>
+              <li>Layout, responsiveness, performance</li>
+              <li>Small refactors and code cleanup</li>
+            </ul>
+            <div class="card-footer">
+              <span>Priced per bug or bundle.</span>
+              <span>Timeline: 24–72 hours</span>
+            </div>
+          </article>
+
+          <!-- APIs -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">API & third-party integrations</h3>
+              <span class="card-chip">from $450</span>
+            </div>
+            <p class="card-body">
+              Let your tools talk to each other: payments, auth, email, SMS, and CRMs all wired up properly.
+            </p>
+            <ul class="card-list">
+              <li>Stripe, PayPal, auth, email, SMS</li>
+              <li>Webhooks & CRM connections</li>
+              <li>Error handling, logs, documentation</li>
+            </ul>
+            <div class="card-footer">
+              <span>Make your product more powerful.</span>
+              <span>Timeline: 3–7 days</span>
+            </div>
+          </article>
+
+          <!-- Automations -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Automations & internal tools</h3>
+              <span class="card-chip">from $500</span>
+            </div>
+            <p class="card-body">
+              Turn repetitive tasks into systems that quietly run in the background and free up your calendar.
+            </p>
+            <ul class="card-list">
+              <li>Lead routing & follow-up workflows</li>
+              <li>Dashboards & admin tools</li>
+              <li>Integrations with CRMs, sheets, and docs</li>
+            </ul>
+            <div class="card-footer">
+              <span>Save hours every single week.</span>
+              <span>Timeline: 5–10 days</span>
+            </div>
+          </article>
+
+          <!-- AI chatbots -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">AI chatbots & assistants</h3>
+              <span class="card-chip">from $650</span>
+            </div>
+            <p class="card-body">
+              AI agents that answer questions, qualify leads, or help your team search your own knowledge base.
+            </p>
+            <ul class="card-list">
+              <li>Customer support bots on your site</li>
+              <li>Lead-capture & intake chatbots</li>
+              <li>Internal knowledge base assistants</li>
+            </ul>
+            <div class="card-footer">
+              <span>Powered by modern LLMs (GPT-style).</span>
+              <span>Timeline: 7–14 days</span>
+            </div>
+          </article>
+
+          <!-- Micro-SaaS -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">MVP & micro-SaaS builds</h3>
+              <span class="card-chip">custom</span>
+            </div>
+            <p class="card-body">
+              Have a product idea? We’ll scope the smallest sellable version and get it live in front of people.
+            </p>
+            <ul class="card-list">
+              <li>User accounts, billing, core features</li>
+              <li>Admin panel & basic analytics</li>
+              <li>Launch support & iteration</li>
+            </ul>
+            <div class="card-footer">
+              <span>Perfect for builders & creators.</span>
+              <span>Timeline: 2–6 weeks</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section id="process">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Process</div>
+            <h2 class="section-title">Exactly how we’ll work together</h2>
+          </div>
+          <p class="section-subtitle">
+            No enterprise nonsense. Just a clear, 4-step path from “idea in your head” to “link you can send to customers.”
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="step">
+            <div class="step-number">01 – Brief</div>
+            <div class="step-title">Tell me what you want</div>
+            <div class="step-text">
+              You share what you’re trying to build or fix, your tools, and what “done” means for you.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">02 – Scope</div>
+            <div class="step-title">Tiny, launchable version</div>
+            <div class="step-text">
+              I propose the simplest version we can ship fast, with fixed pricing and timeline.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">03 – Build</div>
+            <div class="step-title">I build, you react</div>
+            <div class="step-text">
+              You get progress updates and chances to nudge the direction while I handle the details.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">04 – Launch</div>
+            <div class="step-title">Ship & support</div>
+            <div class="step-text">
+              We launch, wire up analytics, and I’m available for post-launch tweaks or maintenance.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing strip -->
+      <section id="pricing">
+        <div class="pricing-strip">
+          <div class="pricing-strip-main">
+            Typical budgets:<br />
+            Landing pages: $350–$1,200 · Automations: $500–$2,000 · Micro-SaaS MVPs: $2k+
+          </div>
+          <div class="pricing-strip-note">
+            Every project starts with a scoped, fixed price. If you’re working with a tight budget, we’ll design an ultra-lean
+            version and grow it over time.
+          </div>
+          <a href="#contact" class="btn-primary">
+            Share your budget →
+          </a>
+        </div>
+      </section>
+
+      <!-- .clout Web3 domain promo -->
+      <section id="clout" class="clout-section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Web3 identity</div>
+            <h2 class="section-title">Claim your name in Web3 with <span>.clout</span></h2>
+          </div>
+          <p class="section-subtitle">
+            Alongside the products we build, you can lock in a Web3 domain that matches your brand, handle, or project —
+            powered by Freename’s <strong>.clout</strong> extension.
+          </p>
+        </div>
+
+        <div class="clout-grid">
+          <!-- Left: main explanation -->
+          <article class="clout-card-main">
+            <div class="clout-tagline">Why .clout?</div>
+            <h3>Own your brand — not just rent it.</h3>
+            <p>
+              Traditional domains live on rented land. A <strong>.clout</strong> Web3 domain lets you secure a name that
+              travels with you across products, platforms, and on-chain ecosystems.
+            </p>
+
+            <div class="clout-pill-row">
+              <div class="clout-pill">
+                <span class="clout-pill-dot"></span>
+                Web3-native identity for builders & creators
+              </div>
+              <div class="clout-pill">
+                🔐 You own it on-chain, not a registrar
+              </div>
+              <div class="clout-pill">
+                🎯 Perfect for personal brands, projects & studios
+              </div>
+            </div>
+
+            <ul class="clout-list">
+              <li><strong>Lock in your name:</strong> grab your handle, brand, or product name on <code>.clout</code>.</li>
+              <li><strong>Future-proof:</strong> your Web3 domain can be used in dApps, wallets, and new integrations as the ecosystem grows.</li>
+              <li><strong>Creator-friendly:</strong> ideal for founders, devs, artists, and influencers who live online.</li>
+              <li><strong>Plays well with everything else we build:</strong> we can reference your .clout identity inside your apps and landing pages.</li>
+            </ul>
+
+            <p class="clout-note">
+              You’ll purchase your <strong>.clout</strong> domain directly via Freename — I’ll help you decide what to register
+              and how to wire it into your branding or product.
+            </p>
+          </article>
+
+          <!-- Right: visual + CTA -->
+          <aside class="clout-card-side">
+            <div class="clout-side-label">Featured domain extension</div>
+            <div class="clout-domain-big">
+              <span>.clout</span>
+            </div>
+            <p class="clout-side-stat">
+              Think of <strong>.clout</strong> as your “on-chain display name” — short, memorable, and built for people who
+              create things on the internet.
+              <small>Great for portfolio sites, project hubs, or your main link-in-bio.</small>
+            </p>
+
+            <div class="clout-side-cta">
+              <a
+                class="clout-link"
+                href="https://freename.io/discover/clout"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore .clout on Freename →
+              </a>
+              <span>We can align your domain, product, and landing page in one go.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2 class="section-title">Tell me what you’d like to build</h2>
+          </div>
+          <p class="section-subtitle">
+            This form takes 1–2 minutes. I’ll reply with a short email (or Loom if needed) sharing how I’d approach your
+            project.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Project inquiry</h3>
+            <p>
+              Share what you’re trying to launch or fix. The more specific you are, the more concrete and useful my proposal
+              will be.
+            </p>
+
+            <!-- FORM: sends data to baitjet@gmail.com using mailto -->
+            <form
+              action="mailto:baitjet@gmail.com"
+              method="post"
+              enctype="text/plain"
+            >
+              <div>
+                <label for="name">Your name *</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+
+              <div>
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+
+              <div>
+                <label for="type">What are you looking for? *</label>
+                <select id="type" name="project_type" required>
+                  <option value="">Select one</option>
+                  <option value="landing">Landing page</option>
+                  <option value="bugs">Bug fixes / cleanup</option>
+                  <option value="api">API integration</option>
+                  <option value="automation">Automation / internal tool</option>
+                  <option value="ai">AI chatbot / assistant</option>
+                  <option value="saas">MVP / micro-SaaS</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="budget">Approximate budget (USD)</label>
+                <select id="budget" name="budget">
+                  <option value="">Select a range</option>
+                  <option value="under-500">Under $500</option>
+                  <option value="500-1500">$500 – $1,500</option>
+                  <option value="1500-3000">$1,500 – $3,000</option>
+                  <option value="3000-plus">$3,000+</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="details">Tell me about your project *</label>
+                <textarea
+                  id="details"
+                  name="details"
+                  required
+                  placeholder="Example: “AI chatbot for my coaching site that answers FAQs and books calls, using Stripe + Calendly. Need it live in 3 weeks.”"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                Send project details →
+              </button>
+            </form>
+          </div>
+
+          <div class="contact-side">
+            <p>
+              Prefer direct email? Reach out at
+              <strong>baitjet@gmail.com</strong>
+              with a short description of what you need and the budget range you’re thinking about.
+            </p>
+
+            <div>
+              <p>Fastest “good inquiry” template you can send:</p>
+              <p class="contact-example">
+                “Hey Santos — I want to build <strong>[what]</strong> for <strong>[who]</strong>. I’m currently using
+                <strong>[tools]</strong>. I’d love to launch in <strong>[when]</strong> and my budget is around
+                <strong>[$$]</strong>.”
+              </p>
+            </div>
+
+            <p>
+              If you’re unsure what you need technically, that’s fine. Just describe the outcome you want. I’ll handle
+              picking the stack and suggesting the simplest version we can launch.
+            </p>
+
+            <p class="danger-text">
+              Biggest mistake? Waiting until everything is “perfect.” A small, imperfect v1 in front of users beats a huge
+              idea stuck in your notes.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Mr. J. C. Santos. All rights reserved.</span>
+      <span>
+        Built for founders, creators, and small teams who want to move fast without hiring a full dev department.
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
