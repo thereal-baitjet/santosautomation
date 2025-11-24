@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Mr. J. C. Santos – AI & Full-Stack Studio</title>
+  <title>AI Systems Mentor for Service Consultants | Mr. J. C. Santos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="AI-powered full-stack studio: landing pages, automations, APIs, and micro-SaaS builds to help your business make more money."
+    content="AI mentor + full-stack builder helping service consultants ($100k–$500k) ship landing pages, AI chatbots, and automations that cut admin by 40% and grow revenue."
   />
+  <meta name="keywords" content="AI automation consultant, service business automation, AI chatbots for consultants, landing page builder, AI systems mentor, small business automations, revenue engine, mr j c santos" />
+  <meta name="author" content="Mr. J. C. Santos" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mr. J. C. Santos" />
+  <meta property="og:title" content="AI Systems Mentor for Service Consultants | Mr. J. C. Santos" />
+  <meta property="og:description" content="Full-stack builder + AI mentor helping service consultants ship landing pages, AI bots, and automations that reduce admin 40% and unlock new revenue." />
+  <meta property="og:url" content="/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Systems Mentor for Service Consultants | Mr. J. C. Santos" />
+  <meta name="twitter:description" content="Landing pages, AI chatbots, and automations for service consultants who want revenue growth and less busywork." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -635,6 +647,122 @@
       padding: 26px 0 6px;
     }
 
+    .story-grid,
+    .trust-grid,
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .story-card,
+    .trust-card,
+    .case-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.16), rgba(15, 23, 42, 0.96));
+      padding: 12px 12px 11px;
+      font-size: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .story-card h3,
+    .trust-card h3,
+    .case-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .story-card p,
+    .trust-card p,
+    .case-card p {
+      font-size: 11.5px;
+      color: #d1d5db;
+    }
+
+    .mini-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 211, 238, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+      width: fit-content;
+    }
+
+    .lead-magnet {
+      margin: 6px 0 8px;
+    }
+
+    .lead-card {
+      border-radius: 18px;
+      border: 1px solid rgba(34, 211, 238, 0.55);
+      background: linear-gradient(120deg, rgba(34, 211, 238, 0.18), rgba(139, 92, 246, 0.14), rgba(15, 23, 42, 0.98));
+      padding: 14px 16px 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    .lead-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 11.5px;
+      color: #d1d5db;
+      margin-top: 6px;
+    }
+
+    .lead-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: #22d3ee;
+    }
+
+    .cta-slab {
+      margin-top: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(15, 23, 42, 0.96));
+      padding: 13px 14px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      gap: 12px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: #a5b4fc;
+    }
+
+    .case-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+      font-size: 11px;
+    }
+
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -1136,6 +1264,12 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .story-grid,
+      .trust-grid,
+      .case-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .process-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1152,6 +1286,11 @@
       .clout-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .lead-card,
+      .cta-slab {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     @media (max-width: 640px) {
@@ -1164,6 +1303,12 @@
       }
 
       .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .story-grid,
+      .trust-grid,
+      .case-grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1198,6 +1343,42 @@
       
     }
   </style>
+  <script>
+    // Ensure canonical/og:url resolve to the live URL and emit structured data
+    (function setSeoMeta() {
+      var url = window.location.href.split("#")[0];
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute("href", url);
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", url);
+
+      var ld = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Mr. J. C. Santos",
+        "url": url,
+        "description": "AI mentor + full-stack builder for service consultants: landing pages, AI chatbots, automations, and revenue engines.",
+        "areaServed": ["United States", "Canada", "United Kingdom"],
+        "serviceType": [
+          "AI automation for service consultants",
+          "AI chatbots and assistants",
+          "Conversion-focused landing pages",
+          "Revenue engine setup",
+          "Micro-SaaS MVP builds"
+        ],
+        "provider": {
+          "@type": "Person",
+          "name": "Mr. J. C. Santos",
+          "jobTitle": "AI Systems Mentor & Full-Stack Developer"
+        }
+      };
+
+      var ldScript = document.createElement("script");
+      ldScript.type = "application/ld+json";
+      ldScript.text = JSON.stringify(ld);
+      document.head.appendChild(ldScript);
+    })();
+  </script>
 </head>
 <body>
   <!-- Artistic background blobs -->
@@ -1221,6 +1402,8 @@
 
         <nav>
           <a href="#services">Services</a>
+          <a href="#positioning">Who I Help</a>
+          <a href="#proof">Proof</a>
           <a href="#process">Process</a>
           <a href="#pricing">Pricing</a>
           <a href="#clout">.clout Domains</a>
@@ -1238,41 +1421,44 @@
     <main>
       <section class="hero">
         <div>
-          <div class="hero-kicker">Build, automate, ship</div>
+          <div class="hero-kicker">For service consultants making $100k–$500k</div>
           <h1 class="hero-title">
-            I turn ideas into <span>working products, AI agents, and automations</span>.
+            Your AI mentor for <span>real revenue, fewer busywork hours, and launch-ready builds</span>.
           </h1>
           <p class="hero-subtitle">
-            Need a landing page, a micro-SaaS, or an AI chatbot wired into your stack? I’ll design, build, and ship it—so you
-            can focus on customers and revenue.
+            I build side-by-side with you—not a “deck + goodbye” consultant. We’ll ship landing pages, AI assistants, and
+            automations that cut your admin time and drive booked calls.
           </p>
 
           <div class="hero-badges">
             <div class="pill pill-animated">
               <span class="pill-dot"></span>
-              Launch-ready in days, not months
+              40% admin time reduced in 30 days (avg across clients)
             </div>
             <div class="pill">
-              ⚡ Landing pages · APIs · Bots · Automations
+              📈 200 leads → $150k revenue via AI lead engine
             </div>
             <div class="pill">
-              🎨 Custom-designed, not generic templates
+              🤝 I build with you—strategy + execution
             </div>
           </div>
 
           <div class="hero-actions">
             <a href="#contact" class="btn-primary">
-              Tell me what you want to build →
+              Book a 15-min strategy call →
             </a>
             <a href="#services" class="btn-ghost">
               Explore services
             </a>
+            <a href="AI_Audit_Checklist_SantosAutomation.pdf" class="btn-ghost" target="_blank" rel="noopener">
+              Download the AI Audit checklist (PDF)
+            </a>
           </div>
 
           <div class="hero-meta">
-            <span>💻 Web apps · Micro-SaaS · AI assistants</span>
+            <span>💻 Landing pages · AI assistants · Automations</span>
             <span class="hero-meta-dot"></span>
-            <span>🤝 Perfect for solo founders & small teams</span>
+            <span>🧠 Founder-led: Full-stack dev + AI systems coach</span>
           </div>
         </div>
 
@@ -1339,6 +1525,147 @@
             </div>
           </div>
         </aside>
+      </section>
+
+      <!-- Positioning -->
+      <section id="positioning">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Positioning</div>
+            <h2 class="section-title">Built for service-based consultants who want real results</h2>
+          </div>
+          <p class="section-subtitle">
+            If you’re between $100k–$500k/year and tired of duct-tape systems, I’ll help you ship cleaner funnels, bots, and automations that actually move revenue.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="mini-metric">🎯 Niche focus</div>
+            <h3>Service consultancies & boutique agencies</h3>
+            <p>
+              Specializing in experts selling time-based services: marketing shops, ops consultants, designers, and coaches.
+              Tight scope = faster builds and messaging that lands.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <div class="mini-metric">🧠 Founder-led</div>
+            <h3>Full-stack dev + AI systems mentor</h3>
+            <p>
+              I architect, code, and guide you. No hand-offs to interns. You get strategy, build, and implementation directly from me.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <div class="mini-metric">📊 Outcomes</div>
+            <h3>Numbers you can cite</h3>
+            <p>
+              40% reduction in admin time in 30 days; 200 dormant leads → $150k revenue via AI lead engine; 2-week MVPs that start collecting payments.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Lead magnet -->
+      <section id="lead-magnet" class="lead-magnet">
+        <div class="lead-card">
+          <div>
+            <div class="section-kicker">Free resource</div>
+            <h2 class="section-title">AI Systems Audit Checklist (service-business edition)</h2>
+            <p class="section-subtitle">
+              A 5-step worksheet to map your offers, client journey, and the exact automations to deploy in the next 14 days.
+              Grab the PDF instantly; I’ll include a Loom walkthrough link inside.
+            </p>
+            <ul class="lead-list">
+              <li>Identify top 3 workflows to automate immediately</li>
+              <li>Prompts/templates for lead intake, follow-up, and SOP conversion</li>
+              <li>Tool stack suggestions (no vendor lock-in)</li>
+            </ul>
+          </div>
+          <div class="cta-buttons" style="justify-content:flex-start;">
+            <a class="btn-primary" href="AI_Audit_Checklist_SantosAutomation.pdf" target="_blank" rel="noopener">
+              Download PDF now →
+            </a>
+            <a class="btn-ghost" href="#contact">Book a 15-min call instead</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proof / case -->
+      <section id="proof">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Proof</div>
+            <h2 class="section-title">Case snapshots & trust signals</h2>
+          </div>
+          <p class="section-subtitle">
+            Real examples of how I work and what to expect. Want the full write-ups? Ask for the private portfolio link.
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="case-metric">🧲 Lead engine</span>
+              <span class="case-metric">Service agency</span>
+            </div>
+            <h3>200 cold leads → $150k revenue in 60 days</h3>
+            <p>
+              Built an AI lead-qual bot that segmented prospects, triggered tailored emails, and booked strategy calls in Calendly.
+              Layered in Zapier + Sheets + Stripe for fast invoicing.
+            </p>
+            <div class="case-meta">
+              <span class="mini-metric">+34% landing page sign-ups</span>
+              <span class="mini-metric">12 hrs/week saved</span>
+            </div>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="case-metric">⚡ Ops automation</span>
+              <span class="case-metric">Consulting duo</span>
+            </div>
+            <h3>40% admin time cut in 30 days</h3>
+            <p>
+              Automated intake, proposals, and onboarding with AI summaries, templated SOWs, and status dashboards. Team went from juggling docs to hitting client deadlines calmly.
+            </p>
+            <div class="case-meta">
+              <span class="mini-metric">1.5x faster onboarding</span>
+              <span class="mini-metric">Inbox to action in minutes</span>
+            </div>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="case-metric">🚀 Launch</span>
+              <span class="case-metric">Creator/coach</span>
+            </div>
+            <h3>Paid MVP live in 2 weeks</h3>
+            <p>
+              Designed a conversion-first landing page, integrated payments, and shipped a mini portal with AI FAQ assistant. First $5k collected before the main build.
+            </p>
+            <div class="case-meta">
+              <span class="mini-metric">from $0 → $5k pre-sales</span>
+              <span class="mini-metric">1:many coaching workflow</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-slab">
+          <div>
+            <div class="section-kicker">Next steps</div>
+            <div class="section-title">Choose your path: call, pricing, or checklist</div>
+            <p class="section-subtitle">
+              Different readiness levels need different CTAs. Pick the one that fits you right now.
+            </p>
+          </div>
+          <div class="cta-buttons">
+            <a class="btn-primary" href="#contact">Schedule a 15-min call</a>
+            <a class="btn-ghost" href="#pricing">See typical pricing</a>
+            <a class="btn-ghost" href="AI_Audit_Checklist_SantosAutomation.pdf" target="_blank" rel="noopener">Download free guide</a>
+          </div>
+        </div>
       </section>
 
       <!-- Services -->
@@ -1517,6 +1844,40 @@
               We launch, wire up analytics, and I’m available for post-launch tweaks or maintenance.
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Trust & transparency -->
+      <section id="trust">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Trust</div>
+            <h2 class="section-title">Transparent process, secure data, human support</h2>
+          </div>
+          <p class="section-subtitle">
+            High-ticket services need clarity. Here’s what working with me looks like and how I keep your data safe.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          <article class="trust-card">
+            <h3>Clear scope & timelines</h3>
+            <p>
+              You get a one-page plan with deliverables, tech stack, and timeline before we start. No surprise scope creep.
+            </p>
+          </article>
+          <article class="trust-card">
+            <h3>Data privacy</h3>
+            <p>
+              Credentials stored in 1Password, encrypted channels (AES-256 at rest via provider defaults), and least-privilege access. No dataset reuse.
+            </p>
+          </article>
+          <article class="trust-card">
+            <h3>Founder access</h3>
+            <p>
+              Direct line to me via email/text. Loom updates for milestones. I handle build + QA; no hand-offs to unseen teams.
+            </p>
+          </article>
         </div>
       </section>
 
