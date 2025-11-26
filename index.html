@@ -112,8 +112,8 @@
     .cinematic-block {
       position: relative;
       transform-origin: center center;
-      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), filter 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
-      will-change: transform, filter, opacity;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s ease, box-shadow 0.8s ease;
+      will-change: transform, opacity;
       box-shadow: 0 12px 32px rgba(3, 7, 18, 0.7);
       border-radius: 18px;
       padding: 8px;
@@ -167,7 +167,7 @@
     .blob {
       position: fixed;
       border-radius: 999px;
-      filter: blur(40px);
+      filter: blur(22px);
       opacity: 0.5;
       pointer-events: none;
       mix-blend-mode: screen;
@@ -214,7 +214,7 @@
       top: 0;
       z-index: 10;
       padding: 8px 0 14px;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(8px);
       background: linear-gradient(
         to bottom,
         rgba(3, 4, 18, 0.9),
@@ -420,7 +420,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(4px);
     }
 
     .pill-animated {
@@ -668,7 +668,7 @@
       border-radius: 999px;
       background: radial-gradient(circle, rgba(56, 189, 248, 0.9), transparent 70%);
       opacity: 0.7;
-      filter: blur(4px);
+      filter: blur(1.5px);
       animation: spark-pulse 3.2s ease-in-out infinite;
     }
 
@@ -2370,11 +2370,10 @@
           var normalized = Math.min(distance / viewportCenter, 1);
 
           var scale = 1.12 - normalized * 0.12; // gently larger in view
-          var blur = normalized * 2.2; // keep details readable
           var opacity = Math.max(1 - normalized * 0.14, 0.82);
 
           block.style.transform = "scale(" + scale.toFixed(3) + ") translateZ(0)";
-          block.style.filter = "blur(" + blur.toFixed(2) + "px)";
+          block.style.filter = "none"; // disable blur to avoid visual glitches
           block.style.opacity = opacity.toFixed(2);
 
           if (normalized < 0.35) {
