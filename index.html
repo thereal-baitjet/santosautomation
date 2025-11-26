@@ -118,6 +118,7 @@
       border-radius: 18px;
       padding: 8px;
       margin-inline: -2px;
+      scroll-margin-top: 110px; /* keep anchors clear of the sticky header */
     }
 
     .cinematic-block > * {
@@ -126,6 +127,13 @@
 
     .cinematic-block.is-foreground {
       box-shadow: 0 20px 60px rgba(139, 92, 246, 0.35), 0 4px 18px rgba(34, 211, 238, 0.2);
+    }
+
+    .cinematic-block.anchor-focused {
+      filter: none !important;
+      opacity: 1 !important;
+      transform: scale(1.05) translateZ(0) !important;
+      transition-duration: 0.35s;
     }
 
     @media (max-width: 780px) {
@@ -2242,6 +2250,70 @@
   <script>
     // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Center anchor targets and momentarily unblur them so content is readable right away
+    (function initAnchorReveal() {
+      var anchorLinks = Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]'));
+      if (!anchorLinks.length) return;
+
+      var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var focusedBlock = null;
+      var focusedTimer = null;
+
+      function focusTarget(hash, shouldUpdateHistory) {
+        if (!hash || hash === "#") return;
+
+        var target = document.querySelector(hash);
+        if (!target) return;
+
+        if (shouldUpdateHistory) {
+          history.pushState(null, "", hash);
+        }
+
+        var header = document.querySelector("header");
+        var headerOffset = header ? header.getBoundingClientRect().height * 0.5 : 0;
+        var rect = target.getBoundingClientRect();
+        var targetCenter = rect.top + window.scrollY + rect.height / 2;
+        var desiredTop = Math.max(targetCenter - window.innerHeight / 2 - headerOffset, 0);
+
+        window.scrollTo({
+          top: desiredTop,
+          behavior: prefersReducedMotion ? "auto" : "smooth"
+        });
+
+        if (focusedBlock && focusedBlock !== target) {
+          focusedBlock.classList.remove("anchor-focused");
+        }
+        target.classList.add("anchor-focused");
+
+        clearTimeout(focusedTimer);
+        focusedBlock = target;
+        focusedTimer = window.setTimeout(function () {
+          target.classList.remove("anchor-focused");
+        }, 1400);
+      }
+
+      anchorLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          var href = link.getAttribute("href");
+          if (!href || href.charAt(0) !== "#") return;
+          if (!document.querySelector(href)) return;
+
+          event.preventDefault();
+          focusTarget(href, true);
+        });
+      });
+
+      if (window.location.hash) {
+        window.setTimeout(function () {
+          focusTarget(window.location.hash, false);
+        }, 120);
+      }
+
+      window.addEventListener("hashchange", function () {
+        focusTarget(window.location.hash, false);
+      });
+    })();
 
     // Developer-emoji cursor that trails the pointer
     (function initEmojiCursor() {
